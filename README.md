@@ -14,7 +14,8 @@ This repository implements a hand gesture recognition system using Python, Media
 ---
 
 ## Installation
-
+### Conda Installer Path
+You can download the conda installer path in [here](https://www.anaconda.com/download/success)
 ### Conda Environment Installation
 Run the following code:
 ```bash
