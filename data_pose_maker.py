@@ -4,6 +4,7 @@ import numpy as np
 from datetime import datetime
 import os
 import time
+import argparse
 
 def create_dataset(direktori_path, nama_label, frameratesave=2, maxframe=100, start_delay=5):
     """
@@ -146,4 +147,22 @@ def create_dataset(direktori_path, nama_label, frameratesave=2, maxframe=100, st
 
 
 if __name__ == "__main__":
-    create_dataset(direktori_path="dataset", nama_label="Dua", frameratesave=2, maxframe=50, start_delay=3)
+    parser = argparse.ArgumentParser(description='Hand Pose Recognition')
+    parser.add_argument('--label_name', type=str, default='One', metavar='N',
+                        help='Name of the label')
+    parser.add_argument('--dataset_path', type=str, default='dataset', metavar='N',
+                        help='Name of the label')
+    parser.add_argument('--frameratesave', type=int, default=2, metavar='S',
+                        help='Frame Rate checkpoint for saving image')
+    parser.add_argument('--maxframe', type=int, default=50, metavar='S',
+                        help='Max Frame')
+    parser.add_argument('--start_delay', type=int, default=3, metavar='S',
+                        help='Countdown time to delay before capturing')
+    args = parser.parse_args()
+    create_dataset(
+        direktori_path=args.dataset_path, 
+        nama_label=args.label_name, 
+        frameratesave=args.frameratesave, 
+        maxframe=args.maxframe, 
+        start_delay=args.start_delay,
+    )
