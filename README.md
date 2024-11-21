@@ -15,6 +15,17 @@ This repository implements a hand gesture recognition system using Python, Media
 
 ## Installation
 
+### Conda Environment Installation
+Run the following code:
+```bash
+conda create --name hand-gesture-env python=3.8
+```
+
+### Conda Environment Activation
+```bash
+conda activate hand-gesture-env
+```
+
 1. Clone the repository:
 ```bash
 git clone https://github.com/virgantara/Hand-Gesture-Recognition.git

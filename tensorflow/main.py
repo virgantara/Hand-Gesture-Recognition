@@ -8,6 +8,8 @@ from sklearn.model_selection import train_test_split
 from keras.optimizers import SGD
 from model import *
 
+import argparse
+
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 
@@ -111,47 +113,71 @@ def prepare_data(X, y):
     return TensorDataset(X_tensor, y_tensor)
 
 
-# Example usage
-dataset = "../dataset"                  # Base dataset directory
-labels = ["Satu", "Dua"]     # List of labels (subdirectories)
 
-# Call the function
-X,y = read_landmarks(dataset, labels)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=40)
-print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
 
-# Parameters
-input_size = X_train.shape[1]  # Number of features (flattened landmarks)
-num_classes = len(labels)      # Number of labels
-batch_size = 32                # Batch size for DataLoader
-learning_rate = 0.001          # Learning rate
-num_epochs = 50                # Number of epochs
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Hand Pose Recognition')
+    parser.add_argument('--label_name', type=str, default='One', metavar='N',
+                        help='Name of the label')
+    parser.add_argument('--dataset_path', type=str, default='../dataset', metavar='N',
+                        help='Name of the label')
+    parser.add_argument('--frameratesave', type=int, default=2, metavar='S',
+                        help='Frame Rate checkpoint for saving image')
+    parser.add_argument('--maxframe', type=int, default=50, metavar='S',
+                        help='Max Frame')
+    parser.add_argument('--start_delay', type=int, default=3, metavar='S',
+                        help='Countdown time to delay before capturing')
+    args = parser.parse_args()
+    
 
-# Create model, loss function, and optimizer
-model = get_model(input_size=input_size, num_classes=num_classes)
+    # Example usage
+    dataset = args.dataset_path                  # Base dataset directory
+    labels = ["One", "Two","Three"]     # List of labels (subdirectories)
 
-# Compile the model
-model.compile(optimizer=SGD(lr=learning_rate),
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
+    # Call the function
+    X,y = read_landmarks(dataset, labels)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=40)
+    print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
 
-# Display the model summary
-model.summary()
+    # Parameters
+    input_size = X_train.shape[1]  # Number of features (flattened landmarks)
+    num_classes = len(labels)      # Number of labels
+    batch_size = 32                # Batch size for DataLoader
+    learning_rate = 0.001          # Learning rate
+    num_epochs = 200                # Number of epochs
 
-# Train the model
-history = model.fit(
-    X_train, y_train,
-    validation_split=0.2,
-    epochs=num_epochs,
-    batch_size=batch_size,
-    verbose=1
-)
+    # Create model, loss function, and optimizer
+    model = get_model(input_size=input_size, num_classes=num_classes)
 
-# Evaluate the model
-test_loss, test_accuracy = model.evaluate(X_test, y_test, verbose=0)
-print(f"Test Accuracy: {test_accuracy:.2f} %")
+    # Compile the model
+    model.compile(optimizer=SGD(learning_rate=learning_rate),
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'])
 
-# Make predictions (optional)
-predictions = model.predict(X_test)
-predicted_labels = tf.argmax(predictions, axis=1).numpy()
-# print(predicted_labels)
+    # Display the model summary
+    model.summary()
+
+    # Train the model
+    history = model.fit(
+        X_train, y_train,
+        validation_split=0.2,
+        epochs=num_epochs,
+        batch_size=batch_size,
+        verbose=1
+    )
+
+    # Evaluate the model
+    test_loss, test_accuracy = model.evaluate(X_test, y_test, verbose=0)
+    print(f"Test Accuracy: {test_accuracy:.2f} %")
+
+    output_path = "outputs"
+    model_name = "model.keras"
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)  # Buat direktori jika belum ada
+        print(f"Directory '{output_path}' created.")
+    model.save(os.path.join(output_path,model_name))
+
+    # Make predictions (optional)
+    predictions = model.predict(X_test)
+    predicted_labels = tf.argmax(predictions, axis=1).numpy()
+    # print(predicted_labels)
