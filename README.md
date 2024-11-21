@@ -35,15 +35,33 @@ python data_pose_maker.py --label_name=Three
 1. `--start_delay` : Countdown time to delay before capturing
 
 ## Tensorflow module
+### Run by terminal
 1. Change to tensorflow directory with `cd tensorflow`
 2. Run the `main.py` file to train and evaluate:
 ```bash
 python main.py
 ```
+### Run by jupyter notebook
+1. Change to tensorflow directory with `cd tensorflow`
+1. Start your jupyter notebook by running this command
+```bash
+jupyter notebook
+```
+1. Click the hand-landmark-detection.ipynb file
+
 
 ## PyTorch module
+### Run by terminal
 1. Change to pytorch directory with `cd pytorch`
 2. Run the `main.py` file to train and evaluate:
 ```bash
 python main.py
 ```
+
+### Run by jupyter notebook
+1. Change to tensorflow directory with `cd pytorch`
+1. Start your jupyter notebook by running this command
+```bash
+jupyter notebook
+```
+1. Click the hand-landmark-detection.ipynb file
