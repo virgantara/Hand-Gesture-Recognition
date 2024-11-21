@@ -30,7 +30,7 @@ python data_pose_maker.py --label_name=Three
 ### List of available params
 1. `--label_name` : Name of the label
 1. `--dataset_path` : The path of dataset
-1. `----frameratesave` : Frame Rate checkpoint for saving image
+1. `--frameratesave` : Frame Rate checkpoint for saving image
 1. `--maxframe` : Max Frame
 1. `--start_delay` : Countdown time to delay before capturing
 
