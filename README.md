@@ -32,6 +32,11 @@ conda activate hand-gesture-env
 git clone https://github.com/virgantara/Hand-Gesture-Recognition.git
 cd Hand-Gesture-Recognition
 ```
+1. Python required libraries installation
+```bash
+pip install -r requirements.txt
+```
+
 
 ## Dataset Creation
 The code is intended to capture hand pose for the feature extraction purpose.
