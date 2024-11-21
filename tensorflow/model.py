@@ -23,9 +23,6 @@ def get_model(input_size, num_classes):
 	    Dense(num_classes, activation='softmax')  # Output layer with softmax for classification
 	])
 
-	# Compile the model
-	model.compile(optimizer='sgd',
-	              loss='categorical_crossentropy',
-	              metrics=['accuracy'])
+	
 
 	return model

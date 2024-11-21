@@ -5,10 +5,7 @@ from datetime import datetime
 import os
 import time
 from sklearn.model_selection import train_test_split 
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from torch.utils.data import DataLoader, TensorDataset
+from keras.optimizers import SGD
 from model import *
 
 mp_hands = mp.solutions.hands
@@ -132,6 +129,11 @@ num_epochs = 50                # Number of epochs
 
 # Create model, loss function, and optimizer
 model = get_model(input_size=input_size, num_classes=num_classes)
+
+# Compile the model
+model.compile(optimizer=SGD(lr=learning_rate),
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
 
 # Display the model summary
 model.summary()
