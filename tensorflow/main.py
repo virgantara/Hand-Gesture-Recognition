@@ -125,6 +125,10 @@ if __name__ == "__main__":
                         help='Frame Rate checkpoint for saving image')
     parser.add_argument('--maxframe', type=int, default=50, metavar='S',
                         help='Max Frame')
+    parser.add_argument('--lr', type=float, default=0.001, metavar='S',
+                        help='Learning rate')
+    parser.add_argument('--epochs', type=int, default=50, metavar='S',
+                        help='Num of epoch')
     parser.add_argument('--start_delay', type=int, default=3, metavar='S',
                         help='Countdown time to delay before capturing')
     args = parser.parse_args()
@@ -143,8 +147,8 @@ if __name__ == "__main__":
     input_size = X_train.shape[1]  # Number of features (flattened landmarks)
     num_classes = len(labels)      # Number of labels
     batch_size = 32                # Batch size for DataLoader
-    learning_rate = 0.001          # Learning rate
-    num_epochs = 200                # Number of epochs
+    learning_rate = args.lr          # Learning rate
+    num_epochs = args.epochs                # Number of epochs
 
     # Create model, loss function, and optimizer
     model = get_model(input_size=input_size, num_classes=num_classes)
