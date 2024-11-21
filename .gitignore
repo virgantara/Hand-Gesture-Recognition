@@ -18,3 +18,4 @@
 *.data*
 *.spec
 __pycache__
+.ipynb_checkpoints/**
