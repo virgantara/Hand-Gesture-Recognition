@@ -21,7 +21,23 @@ git clone https://github.com/virgantara/Hand-Gesture-Recognition.git
 cd Hand-Gesture-Recognition
 ```
 
-2. Run the `main.py` file:
+## Dataset Creation
+The code is intended to capture hand pose for the feature extraction purpose.
+Run the `data_pose_maker.py` with:
+```bash
+python data_pose_maker.py
+```
+
+## Tensorflow module
+1. Change to tensorflow directory with `cd tensorflow`
+2. Run the `main.py` file to train and evaluate:
+```bash
+python main.py
+```
+
+## PyTorch module
+1. Change to pytorch directory with `cd pytorch`
+2. Run the `main.py` file to train and evaluate:
 ```bash
 python main.py
 ```
