@@ -9,17 +9,13 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
+from model import *
 
-
-# Initialize Mediapipe Hands and Drawing
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
-hands = mp_hands.Hands(static_image_mode=False,
-                       max_num_hands=2,
-                       min_detection_confidence=0.5,
-                       min_tracking_confidence=0.5)
 
-def ekstraksi_fitur(frame):
+
+def feature_extract(frame, hands):
     # Convert to RGB
     frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
@@ -63,7 +59,12 @@ def ekstraksi_fitur(frame):
     concatenated_landmarks = np.concatenate((left_hand_landmarks.flatten(), right_hand_landmarks.flatten()))
     return concatenated_landmarks
 
-def read_all_images(dataset, labels):
+def read_landmarks(dataset, labels):
+    # Initialize Mediapipe Hands and Drawing
+    hands = mp_hands.Hands(static_image_mode=False,
+                           max_num_hands=2,
+                           min_detection_confidence=0.5,
+                           min_tracking_confidence=0.5)
 
     kelas = np.eye(len(labels))
     y = []
@@ -97,31 +98,14 @@ def read_all_images(dataset, labels):
         for filename in filenames:
             file_path = os.path.join(directory_path, filename)
             frame = cv2.imread(file_path)  # Read the image with OpenCV
-            fitur = ekstraksi_fitur(frame)
+            fitur = feature_extract(frame, hands)
             X.append(fitur)
             y.append(kelas[i])
-        # images_by_label[label] = frames
 
+    hands.close()
     return np.array(X), np.array(y)
 
 
-# Define the CNN Model
-class HandGestureCNN(nn.Module):
-    def __init__(self, input_size, num_classes):
-        super(HandGestureCNN, self).__init__()
-        self.fc1 = nn.Linear(input_size, 128)  # Fully connected layer
-        self.relu1 = nn.ReLU()
-        self.fc2 = nn.Linear(128, 64)
-        self.relu2 = nn.ReLU()
-        self.fc3 = nn.Linear(64, num_classes)  # Output layer
-
-    def forward(self, x):
-        x = self.fc1(x)
-        x = self.relu1(x)
-        x = self.fc2(x)
-        x = self.relu2(x)
-        x = self.fc3(x)
-        return x
 
 # Prepare the dataset for PyTorch
 def prepare_data(X, y):
@@ -135,14 +119,9 @@ dataset = "dataset"                  # Base dataset directory
 labels = ["Satu", "Dua"]     # List of labels (subdirectories)
 
 # Call the function
-X,y = read_all_images(dataset, labels)
+X,y = read_landmarks(dataset, labels)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=40)
 print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
-
-
-
-
-hands.close()
 
 # Parameters
 input_size = X_train.shape[1]  # Number of features (flattened landmarks)

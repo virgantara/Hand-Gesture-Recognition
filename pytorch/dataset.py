@@ -144,4 +144,6 @@ def create_dataset(direktori_path, nama_label, frameratesave=2, maxframe=100, st
     cv2.destroyAllWindows()
     hands.close()
 
-# create_dataset(direktori_path="dataset", nama_label="Dua", frameratesave=2, maxframe=50, start_delay=3)
+
+if __name__ == "__main__":
+    create_dataset(direktori_path="dataset", nama_label="Dua", frameratesave=2, maxframe=50, start_delay=3)
