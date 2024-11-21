@@ -1,0 +1,6 @@
+seaborn
+mediapipe
+tensorflow
+pygame
+opencv-python
+pydot
