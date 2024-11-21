@@ -4,3 +4,4 @@ tensorflow
 pygame
 opencv-python
 pydot
+torch
