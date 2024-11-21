@@ -45,11 +45,11 @@ Run the `data_pose_maker.py` with:
 python data_pose_maker.py --label_name=Three
 ```
 ### List of available params
-1. `--label_name` : Name of the label
-1. `--dataset_path` : The path of dataset
-1. `--frameratesave` : Frame Rate checkpoint for saving image
-1. `--maxframe` : Max Frame
-1. `--start_delay` : Countdown time to delay before capturing
+1. `--label_name` : Name of the label (default: One)
+1. `--dataset_path` : The path of dataset (default: dataset)
+1. `--frameratesave` : Frame Rate checkpoint for saving image (default: 2)
+1. `--maxframe` : Max Frame (default: 50)
+1. `--start_delay` : Countdown time to delay before capturing (default: 3 seconds)
 
 ## Tensorflow module
 ### Run by terminal
