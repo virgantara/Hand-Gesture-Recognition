@@ -1,6 +1,6 @@
 # Hand Gesture Recognition with Mediapipe and PyTorch
 
-This repository implements a hand gesture recognition system using Python, Mediapipe, and PyTorch. The system detects and classifies hand gestures in real-time, making it suitable for applications like sign language recognition, gesture-based control systems, and interactive applications.
+This repository implements a hand gesture recognition system using Python, Mediapipe, Tensorflow, and PyTorch. The system detects and classifies hand gestures in real-time, making it suitable for applications like sign language recognition, gesture-based control systems, and interactive applications. You can select any modules you prefer, such as Tensorflow or PyTorch.
 
 ---
 
