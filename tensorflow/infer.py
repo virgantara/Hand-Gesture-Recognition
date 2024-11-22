@@ -64,7 +64,7 @@ def ekstraksi_fitur(frame, hands):
 # Open webcam
 cap = cv2.VideoCapture(0)
 
-labels = ["One", "Two", "Three"]
+labels = ["one", "two", "three"]
 
 # Main loop for inference
 
