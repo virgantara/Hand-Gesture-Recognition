@@ -117,8 +117,6 @@ def prepare_data(X, y):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Hand Pose Recognition')
-    parser.add_argument('--label_name', type=str, default='One', metavar='N',
-                        help='Name of the label')
     parser.add_argument('--dataset_path', type=str, default='../dataset', metavar='N',
                         help='Name of the label')
     parser.add_argument('--frameratesave', type=int, default=2, metavar='S',
@@ -136,7 +134,7 @@ if __name__ == "__main__":
 
     # Example usage
     dataset = args.dataset_path                  # Base dataset directory
-    labels = ["One", "Two","Three"]     # List of labels (subdirectories)
+    labels = ["One", "Two","Three","Four","Five"]     # List of labels (subdirectories)
 
     # Call the function
     X,y = read_landmarks(dataset, labels)
