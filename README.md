@@ -85,4 +85,6 @@ jupyter notebook
 
 # Please Cite here if you think this helpfull
 
-`E. M. Yuniarno, “Sign Language Recognition Based on Geometric Features Using Deep Learning”, j. nas. pendidik. teknik. inform., vol. 13, no. 2, pp. 338–348, Jul. 2024.`
+---
+E. M. Yuniarno, “Sign Language Recognition Based on Geometric Features Using Deep Learning”, j. nas. pendidik. teknik. inform., vol. 13, no. 2, pp. 338–348, Jul. 2024.
+---
