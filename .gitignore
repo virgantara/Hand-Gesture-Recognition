@@ -1,25 +1,12 @@
-*.bmp
-*.jpg
-*.jpeg
-*.png
-*.h5
-*.pptx
-*.txt
-*.csv
-*.zip
-*.exe
-*.pb
-*.index
-*.toc
-*.pyz
-*.pkg
-*.manifest
-*.html
-*.data*
-*.spec
-__pycache__
-.ipynb_checkpoints/**
-*.keras
-*.pt
-*.h5
-!requirements.txt
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+
