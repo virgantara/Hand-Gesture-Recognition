@@ -83,6 +83,6 @@ jupyter notebook
 ```
 1. Click the hand-landmark-detection.ipynb file
 
-## Please Cite here if you think this helpfull
+## Please cite this if you think this code is helpful
 
 Yuniarno, E. M. (2024). Sign Language Recognition Based on Geometric Features Using Deep Learning. Jurnal Nasional Pendidikan Teknik Informatika : JANAPATI, 13(2), 338–348. https://doi.org/10.23887/janapati.v13i2.82103
